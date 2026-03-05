@@ -5,3 +5,5 @@
 # Ignore python cache
 __pycache__/
 *.pyc
+
+*.csv
