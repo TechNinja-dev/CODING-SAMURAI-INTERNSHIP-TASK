@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import joblib
+from deployment_config import IrisFlowerClassifier
 
 # --------------------------------------
 # Page configuration
@@ -16,10 +17,9 @@ st.set_page_config(
 # --------------------------------------
 @st.cache_resource
 def load_model():
-    model, encoder = joblib.load("iris_flower_classifier_model.pkl")
-    return model,encoder
+    return IrisFlowerClassifier()
 
-model,encoder = load_model()
+model= load_model()
 
 # --------------------------------------
 # Sidebar
@@ -123,10 +123,8 @@ if submit:
             "petal_width": [petal_width]
         })
 
-        prediction = model.predict(input_data)
-
-        predicted_species = encoder.inverse_transform(prediction)[0]
-
+        predicted_species = model.predict(input_data)[0]
+        
         st.subheader("Prediction Result")
 
         st.success(f"Predicted Species: **{predicted_species}**")
