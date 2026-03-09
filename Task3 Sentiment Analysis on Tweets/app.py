@@ -1,5 +1,6 @@
 import streamlit as st
 import joblib
+from deployment_config import TweetAnalysis
 
 # Page config
 st.set_page_config(
@@ -9,7 +10,11 @@ st.set_page_config(
 )
 
 # Load pipeline
-model = joblib.load("sentiment.pkl")
+@st.cache_resource
+def load_model():
+    return TweetAnalysis()
+
+model = load_model()
 
 # ---------------- SIDEBAR ---------------- #
 
@@ -82,7 +87,7 @@ if predict_btn:
         st.warning("Please enter a tweet first.")
 
     else:
-        prediction = model.predict([tweet])[0]
+        prediction = model.predict(tweet)
 
         st.subheader("Prediction Result")
 
