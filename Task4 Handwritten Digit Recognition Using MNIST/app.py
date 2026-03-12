@@ -29,7 +29,7 @@ st.set_page_config(
 st.sidebar.title("✍️ Digit Recognizer")
 
 st.sidebar.header("Model Information")
-st.sidebar.write("Algorithm: Logistic Regression")
+st.sidebar.write("Algorithm: Neural Network")
 st.sidebar.write("Dataset: MNIST")
 st.sidebar.write("Task: Digit Classification")
 
